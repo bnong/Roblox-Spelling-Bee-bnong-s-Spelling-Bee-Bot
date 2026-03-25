@@ -287,3 +287,11 @@ To add words, append them under the correct section header. Lines starting with 
 | `requirements.txt`    | Python dependencies                            |
 | `README.md`           | This file                                      |
 | `desktop_audio.wav`   | Temp audio file (auto-created, safe to delete) |
+
+---
+
+## Contributors
+
+| Contributor | Role             |
+| ----------- | ---------------- |
+| [@bnong](https://github.com/bnong) | Creator & Maintainer |

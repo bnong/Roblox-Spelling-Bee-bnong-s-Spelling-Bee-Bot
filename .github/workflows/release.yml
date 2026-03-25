@@ -55,4 +55,3 @@ jobs:
           files: Worguessing.zip
           draft: false
           prerelease: false
-          generate_release_notes: true
