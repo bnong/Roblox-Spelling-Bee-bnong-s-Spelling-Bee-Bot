@@ -1,0 +1,6 @@
+sounddevice
+scipy
+numpy
+SpeechRecognition
+keyboard
+pynput
