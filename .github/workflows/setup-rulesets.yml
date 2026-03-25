@@ -1,0 +1,47 @@
+name: Setup Repository Rulesets
+
+on:
+  workflow_dispatch:
+
+permissions:
+  administration: write
+
+jobs:
+  setup-rulesets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create owner-only write access ruleset
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/${{ github.repository }}/rulesets \
+            --input - <<'EOF'
+          {
+            "name": "Owner-only write access",
+            "target": "branch",
+            "enforcement": "active",
+            "conditions": {
+              "ref_name": {
+                "include": ["~ALL"],
+                "exclude": []
+              }
+            },
+            "rules": [
+              { "type": "creation" },
+              { "type": "update" },
+              { "type": "deletion" },
+              { "type": "non_fast_forward" }
+            ],
+            "bypass_actors": [
+              {
+                "actor_id": 5,
+                "actor_type": "RepositoryRole",
+                "bypass_mode": "always"
+              }
+            ]
+          }
+          EOF
