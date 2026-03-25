@@ -1,0 +1,58 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version tag (e.g. v1.0)'
+        required: true
+        default: 'v1.0'
+      release_name:
+        description: 'Release title (e.g. Worguessing v.1.0)'
+        required: true
+        default: 'Worguessing v.1.0'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get version info
+        id: info
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "tag=${{ github.event.inputs.version }}" >> "$GITHUB_OUTPUT"
+            echo "name=${{ github.event.inputs.release_name }}" >> "$GITHUB_OUTPUT"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+            echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+            echo "name=Worguessing $TAG" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Package release zip
+        run: |
+          zip Worguessing.zip \
+            spelling_bee_bot.py \
+            wordbank.txt \
+            requirements.txt \
+            README.md \
+            desktop_audio.wav \
+            _partial_audio.wav
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.info.outputs.tag }}
+          name: ${{ steps.info.outputs.name }}
+          files: Worguessing.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
