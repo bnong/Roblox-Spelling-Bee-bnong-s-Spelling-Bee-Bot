@@ -6,6 +6,11 @@ An intelligent Roblox Spelling Bee assistant that listens to the game in real-ti
 
 ---
 
+[![Download](https://img.shields.io/badge/Download-Worguessing.zip-blue?style=for-the-badge&logo=github)](https://github.com/bnong/Roblox-Spelling-Bee-bnong-s-Spelling-Bee-Bot/releases/latest/download/Worguessing.zip)
+[![Latest Release](https://img.shields.io/github/v/release/bnong/Roblox-Spelling-Bee-bnong-s-Spelling-Bee-Bot?style=for-the-badge&logo=github&label=Release&color=brightgreen)](https://github.com/bnong/Roblox-Spelling-Bee-bnong-s-Spelling-Bee-Bot/releases/latest)
+[![Download Latest](https://img.shields.io/github/downloads/bnong/Roblox-Spelling-Bee-bnong-s-Spelling-Bee-Bot/total?style=for-the-badge&logo=download&label=Downloads&color=2ea44f)](https://github.com/bnong/Roblox-Spelling-Bee-bnong-s-Spelling-Bee-Bot/releases)
+[![License](https://img.shields.io/badge/License-AGPL--3.0-orange?style=for-the-badge)](LICENSE)
+
 ---
 
 ## Features
